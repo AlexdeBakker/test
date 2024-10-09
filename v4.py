@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 # Data inladen en opschonen
-df_airports = pd.read_csv('airports-extended-clean.csv', sep=';')
+df_airports = pd.read_csv(r"C:\Users\alexd\Downloads\airports-extended-clean.csv", sep=';')
 
 # Converteer Latitude en Longitude kolommen naar correcte numerieke waarden
 df_airports['Latitude'] = df_airports['Latitude'].str.replace(',', '.').astype(float)
@@ -78,17 +78,17 @@ elif pagina == "Vlucht Route Weergave":
     st.title("Vlucht Route Weergave")
 
     # Data inladen
-    df1 = pd.read_csv(r"airports-extended-clean.csv", sep=';')
-    df2 = pd.read_csv(r"schedule_airport.csv")
+    df1 = pd.read_csv(r"C:\Users\alexd\Downloads\airports-extended-clean.csv", sep=';')
+    df2 = pd.read_csv(r"C:\Users\alexd\Downloads\schedule_airport.csv")
 
     # Dataset merge, op luchthaven/code
     df3 = df2.merge(df1[['ICAO', 'Name']], left_on='Org/Des', right_on='ICAO', how='left')
 
-    # Vlucht data
+    # Vlucht data 
     vluchten = {}
     for i in range(1, 8):
         try:
-            vluchten[f"Vlucht {i}"] = pd.read_excel(rf"30Flight {i}.xlsx")
+            vluchten[f"Vlucht {i}"] = pd.read_excel(rf"C:\Users\alexd\Downloads\30Flight {i}.xlsx")
         except Exception as e:
             st.error(f"Error loading flight data for Vlucht {i}: {e}")
 
@@ -159,8 +159,8 @@ elif pagina == "Vertraging Voorspelling per Bestemming":
     st.title("Vertraging Voorspelling per Bestemming")
 
     # Data inladen
-    df1 = pd.read_csv(r"airports-extended-clean.csv", sep=';')
-    df2 = pd.read_csv(r"schedule_airport.csv")
+    df1 = pd.read_csv(r"C:\Users\alexd\Downloads\airports-extended-clean.csv", sep=';')
+    df2 = pd.read_csv(r"C:\Users\alexd\Downloads\schedule_airport.csv")
 
     # Kolomnaam veranderen 
     df2 = df2.rename(columns={'STD': 'date', 'STA_STD_ltc': 'gepl_aank', 'ATA_ATD_ltc': 'werk_aank'})
@@ -204,7 +204,7 @@ elif pagina == "Aantal Vliegtuigen per Maand":
     st.title('Aantal Vliegtuigen op de Luchthaven per Maand')
 
     # CSV-bestand inlezen
-    df = pd.read_csv('schedule_airport.csv')
+    df = pd.read_csv(r"C:\Users\alexd\Downloads\schedule_airport.csv")
 
     # Kolommen hernoemen
     df.rename(columns={
